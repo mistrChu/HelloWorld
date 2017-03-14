@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<wiringPi.h>
-int i;
+
+
 int main()
 {
     wiringPiSetup();
@@ -15,27 +16,48 @@ int main()
 	digitalWrite(9,LOW);
 	int total =100;
 	int step =2;
-	int time =total;
-	int i;
+	int time0 =total;
+	int time1 =total;
+	int i=0;
 	//softPwmCreate(9,0,100);
 	//softPwmCreate(7,0,100);
 	//softPwmCreate(0,0,100);
 	while(1)
 	{
-		for(i=0;i<1;i++)
-	 {
-		time-=step;
+		while(1)
+		{
+		
+		 time0--;
 		digitalWrite(22,HIGH);
-		delay(time);
+		delay(time0);
 		digitalWrite(22,LOW);
-		delay(total-time);
+		delay(total-time0);
+		      if(time0==0)
+		      
+		      break;
+		}
+		 time0=total;
+		while(1)
+		{
+		time1--;
+		digitalWrite(22,LOW);
+		delay(time1);
+		digitalWrite(22,HIGH);
+		delay(total-time1); 
+         if(time1==0) 
+         break;
+	 }     
 		
-		if(time<=0)
-		time=total;
-		
-	}	
+	         
+	          time1=total;
 	
-	for(i=1;i>=0;i--)
+	}
+	return 0;
+}
+
+
+
+/*for(i=1;i>=0;i--)
 	 {
 		time-=step;
 		digitalWrite(22,LOW);
@@ -46,7 +68,7 @@ int main()
 		if(time<=0)
 		time=total;
 		
-	}	
+	}*/	
 	  /*softPwmWrite(9,255);
 	  softPwmWrite(7,100);
 	  softPwmWrite(0,0);
@@ -58,6 +80,3 @@ int main()
 	   softPwmWrite(0,255);
 	   
 	   delay(1000);*/
-	}
-	return 0;
-}
